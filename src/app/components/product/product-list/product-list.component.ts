@@ -1,4 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../product.service';
+import { Product } from '../models/Product';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -6,10 +10,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
+  products$?: Observable<Product[]>;
 
-  constructor() { }
+  constructor(private service: ProductService) { }
 
   ngOnInit(): void {
+    this.products$ = this.service.getAllProducts();
   }
 
 }

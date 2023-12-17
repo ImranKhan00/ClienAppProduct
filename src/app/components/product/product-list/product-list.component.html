@@ -1,1 +1,41 @@
-<p>product-list works!</p>
+<div class="container">
+  <h1 class="m-3">Procuct List</h1>
+
+  <div class="d-flex justify-content-end mt-3">
+      <a [routerLink]="['/product/add']" class="btn btn-primary">Add Product</a>
+  </div>
+
+  <!-- by using async pipes -->
+   <ng-container *ngIf="products$ | async as products">
+      <table class="table table-bordered mt-3">
+          <thead>
+              <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Purchase Price</th>
+                  <th>Sale Price</th>
+                  <th>Category ID</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let product of products">
+                  <td>{{product.id}}</td>
+                  <td>{{product.name}}</td>
+                  <td>{{product.description}}</td>
+                  <td>{{product.purchasePrice}}</td>
+                  <td>{{product.salePrice}}</td>
+                  <td>{{product.categoryId}}</td>
+                  <div class="btn-group btn-group-justified">
+                    <td [routerLink]="['/product/edit', product.id]" class="btn btn-primary">Edit</td>
+                    <td class="btn btn-danger">Delete</td>
+                   <!-- <td><button (click)="triggerFunction()">Trigger Function</button></td> -->
+                      <!-- <a class="btn btn-light" [routerLink]="['/categories',category.id]">Edit</a> -->
+                  </div>
+              </tr>
+          </tbody>
+      </table>
+  </ng-container>
+
+
+</div>
